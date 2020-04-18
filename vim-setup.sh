@@ -37,6 +37,7 @@ set clipboard=unnamedplus
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set noshowmode
 colorscheme iceberg
 
 let g:airline_theme='bubblegum'
