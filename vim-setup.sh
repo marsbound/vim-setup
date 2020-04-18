@@ -1,6 +1,7 @@
 # Set up package manager
-mkdir -p ~/.vim/bundle/
+mkdir -p ~/.vim/bundle/ ~/.vim/colors/
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+wget -P ~/.vim/colors/substrata.vim https://raw.githubusercontent.com/arzg/vim-substrata/master/colors/substrata.vim
 
 # Create vimrc and add default configurations
 cat > ~/.vimrc << EOF
@@ -16,9 +17,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'arcticicestudio/nord-vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -32,7 +31,8 @@ set clipboard=unnamedplus
 set tabstop=4
 set shiftwidth=4
 set expandtab
-colorscheme nord
+
+colorscheme substrata
 
 EOF
 
