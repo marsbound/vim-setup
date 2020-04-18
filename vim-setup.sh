@@ -1,7 +1,10 @@
-# Set up package manager
-mkdir -p ~/.vim/bundle/ ~/.vim/colors/
+# Set up package manager and color scheme
+mkdir -p ~/.vim/bundle/ 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-wget -P ~/.vim/colors/substrata.vim https://raw.githubusercontent.com/arzg/vim-substrata/master/colors/substrata.vim
+git clone --depth=1 https://github.com/cocopon/iceberg.vim.git 
+
+mv iceberg.vim/src iceberg.vim/colors iceberg.vim/autoload ~/.vim/
+rm -rf iceberg.vim
 
 # Create vimrc and add default configurations
 cat > ~/.vimrc << EOF
@@ -17,12 +20,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'tpope/vim-surround'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-
 filetype plugin indent on    " required
+
 syntax on
 set background=dark
 set nu
@@ -31,8 +37,9 @@ set clipboard=unnamedplus
 set tabstop=4
 set shiftwidth=4
 set expandtab
+colorscheme iceberg
 
-colorscheme substrata
+let g:airline_theme='bubblegum'
 
 EOF
 
