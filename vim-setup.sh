@@ -14,7 +14,7 @@ filetype off                  " required
 " Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
+" Alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " Let Vundle manage Vundle, required
@@ -25,6 +25,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'itchyny/lightline.vim'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'preservim/nerdtree'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
