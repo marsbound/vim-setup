@@ -22,25 +22,29 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 syntax on
+set hlsearch
+set incsearch
 set background=dark
 set nu
 set encoding=utf-8
 set clipboard=unnamedplus
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set noshowmode
+set laststatus=2
+set ttimeout ttimeoutlen=50
 colorscheme iceberg
 
-let g:airline_theme='bubblegum'
+let g:lightline = { 'colorscheme': 'iceberg' }
+let g:gitgutter_async=0
 
 EOF
 
