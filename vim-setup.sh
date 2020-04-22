@@ -1,7 +1,9 @@
 # Set up package manager and color scheme
-mkdir -p ~/.vim/bundle/ 
+mkdir -p ~/.vim/bundle/
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-git clone --depth=1 https://github.com/cocopon/iceberg.vim.git 
+git clone --depth=1 https://github.com/cocopon/iceberg.vim.git
+git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
 
 mv iceberg.vim/src iceberg.vim/colors iceberg.vim/autoload ~/.vim/
 rm -rf iceberg.vim
@@ -24,8 +26,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'itchyny/lightline.vim'
 Plugin 'christoomey/vim-system-copy'
-Plugin 'preservim/nerdtree'
-Plugin 'tpope/vim-fugitive'
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -38,7 +40,11 @@ set relativenumber
 set background=dark
 set nu
 set encoding=utf-8
-set clipboard=unnamedplus
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed "OSX
+else
+  set clipboard=unnamedplus "Linux
+endif
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -49,15 +55,33 @@ colorscheme iceberg
 
 let g:lightline = { 'colorscheme': 'iceberg' }
 let g:gitgutter_async=0
+let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_preview_window = ''
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
-" Nerdtree settings
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Key mappings
+inoremap jk <ESC>
+onoremap jk <ESC>
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+nnoremap <C-x> :Files<Cr>
 EOF
 
 # Install Vundle plugins
 vim +PluginInstall +qall
+
